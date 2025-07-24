@@ -69,6 +69,52 @@ public function store(Request $request)
 </ul>
 </details>
 
+**2. what is the difference between  migrate:fresh and migarte:refresh?**
+
+
+<details>
+	<summary><b>View Answer</b></summary>
+<ul>
+In Laravel, both `migrate:fresh` and `migrate:refresh` are Artisan commands used to reset and rebuild your database, but they work differently:
+
+### **1. `migrate:fresh`**  
+- **Drops all tables** from the database and then runs all migrations again.  
+- **Does not run the `down()` methods** of existing migrations.  
+- **Faster** because it bypasses rolling back migrations step-by-step.  
+- **Use case:** When you want a completely clean database (e.g., during development or testing).  
+
+#### **Command:**  
+```bash
+php artisan migrate:fresh
+```
+
+### **2. `migrate:refresh`**  
+- **Rolls back all migrations** (executes `down()` methods) **one by one** and then re-runs them (`up()`).  
+- **Preserves migration order** and executes each migration's `down()` logic.  
+- **Slower** because it processes each migration step-by-step.  
+- **Use case:** When you need to test if your `down()` methods work correctly.  
+
+#### **Command:**  
+```bash
+php artisan migrate:refresh
+```
+
+### **Key Differences Summary**  
+| Feature               | `migrate:fresh` | `migrate:refresh` |
+|-----------------------|----------------|------------------|
+| Drops all tables directly | ✅ Yes | ❌ No |
+| Runs `down()` methods | ❌ No | ✅ Yes |
+| Speed | ⚡ Faster | 🐢 Slower (due to rollback) |
+| Use Case | Quick DB reset | Testing rollback logic |
+
+### **When to Use Which?**  
+- Use `fresh` when you want a **quick reset** (e.g., during development).  
+- Use `refresh` when you need to **test migration rollbacks** (e.g., checking if `down()` works).  
+
+
+</ul>
+</details>
+
 **100. What is the default database system used in Laravel?**
 ```php
 A) PostgreSQL
