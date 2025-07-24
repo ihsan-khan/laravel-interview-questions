@@ -1,7 +1,6 @@
 **Facades in Laravel?**
 
 <details>
-# Facades in Laravel
 
 ## What is a Facade in Laravel?
 
