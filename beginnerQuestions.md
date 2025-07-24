@@ -4,7 +4,7 @@
 
 **1. Which method is used to redirect users in Laravel?**
 <details>
-	<summary><b>View Detail</b></summary>
+	<summary><b>View Answer</b></summary>
 <ul>
 In Laravel, you can redirect users using the `redirect()` helper function or the `Redirect` facade. Here are the common methods:
 
@@ -66,11 +66,10 @@ public function store(Request $request)
 }
 ```
 
-These methods provide flexibility for handling different redirection scenarios in Laravel. Let me know if you need further clarification! 🚀
 </ul>
 </details>
 
-**1. What is the default database system used in Laravel?**
+**100. What is the default database system used in Laravel?**
 ```php
 A) PostgreSQL
 B) MySQL
