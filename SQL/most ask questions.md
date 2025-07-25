@@ -6,6 +6,34 @@
 SELECT DISTINCT salary FROM employee ORDER BY salary DESC LIMIT 1 OFFSET 1;
 ```
 
+**100. Write a query to find the second highest salary in an employee table?**
+
+<details>
+	<summary><b>View Answer</b></summary>
+<ul>
+# SQL Query to Find the Second Highest Salary
+
+Here are several ways to find the second highest salary from an employees table:
+
+## Method 1: Using LIMIT and OFFSET (MySQL, PostgreSQL, SQLite)
+```sql
+SELECT salary 
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+```
+
+## Method 2: Using Subquery (Works in most databases)
+```sql
+SELECT MAX(salary) AS second_highest_salary
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);
+```
+
+
+</ul>
+</details>
+
 ## 2 Fetch all employees whose names contain the letter “a” exactly twice.
 
 ```sql
