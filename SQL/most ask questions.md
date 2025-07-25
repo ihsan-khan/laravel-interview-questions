@@ -6,8 +6,6 @@
 	<summary><b>View Query</b></summary>
 <ul>
 
-# SQL Query to Find the Second Highest Salary
-
 Here are several ways to find the second highest salary from an employees table:
 
 ## Method 1: Using LIMIT and OFFSET (MySQL, PostgreSQL, SQLite)
