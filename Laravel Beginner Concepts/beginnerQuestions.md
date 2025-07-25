@@ -1,6 +1,4 @@
-# 100-laravel-interview-questions
-
-# Lavavel-100-objective-based-questions
+# laravel-interview-questions
 
 **1. Which method is used to redirect users in Laravel?**
 <details>
@@ -110,6 +108,92 @@ php artisan migrate:refresh
 ### **When to Use Which?**  
 - Use `fresh` when you want a **quick reset** (e.g., during development).  
 - Use `refresh` when you need to **test migration rollbacks** (e.g., checking if `down()` works).  
+
+
+</ul>
+</details>
+
+**3. What is query() in Laravel Eloquent?**
+<details>
+	<summary><b>View Answer</b></summary>
+<ul>
+### **What is `query()` in Laravel Eloquent?**  
+`query()` is a method provided by Laravel's Eloquent ORM that **initializes a new query builder instance** for a model. It allows you to construct and execute database queries fluently.  
+
+#### **Key Points:**
+- It returns a **query builder object** for the model's table.  
+- You can chain methods like `where()`, `orderBy()`, `join()`, etc., to build SQL queries.  
+- It is **optional** in simple cases (you can directly use `Model::where()`), but useful for complex queries.  
+
+---
+
+### **Why Do We Need `query()`?**  
+1. **Starts a Fresh Query**  
+   - Ensures you're not accidentally modifying an existing query.  
+   - Example:  
+     ```php
+     $query = Product::query(); // New query builder
+     ```
+
+2. **Improves Readability in Complex Queries**  
+   - Makes long query chains cleaner.  
+   - Example:  
+     ```php
+     $products = Product::query()
+         ->where('price', '>', 100)
+         ->where('stock', '>', 0)
+         ->orderBy('name')
+         ->get();
+     ```
+
+3. **Conditional Query Building**  
+   - Useful when adding `where` clauses dynamically.  
+   - Example:  
+     ```php
+     $query = Product::query();
+     
+     if ($request->has('category')) {
+         $query->where('category_id', $request->category);
+     }
+     
+     $products = $query->get();
+     ```
+
+4. **Reusing a Base Query**  
+   - Avoids repeating the same conditions.  
+   - Example:  
+     ```php
+     $baseQuery = Product::query()->where('is_active', true);
+     
+     $cheapProducts = $baseQuery->where('price', '<', 50)->get();
+     $expensiveProducts = $baseQuery->where('price', '>=', 50)->get();
+     ```
+
+---
+
+### **When Should You Use `query()`?**  
+✅ **Use `query()` when:**  
+- You need **dynamic query building** (e.g., adding `where` clauses conditionally).  
+- You want **better readability** in long query chains.  
+- You need to **reuse or modify a base query**.  
+
+❌ **Avoid `query()` when:**  
+- You're making a **simple one-line query** (e.g., `Product::where('id', 1)->first()`).  
+
+---
+
+### **Comparison: With vs Without `query()`**  
+| **With `query()`** | **Without `query()`** |  
+|---------------------|----------------------|  
+| `Product::query()->where(...)->get()` | `Product::where(...)->get()` |  
+| Better for **complex queries** | Good for **simple queries** |  
+| Explicitly starts a new query | Implicitly starts a query |  
+
+---
+
+### **Final Verdict**  
+- **`query()` is optional but helpful** for dynamic, complex, or reusable queries.  
+- **For simple queries**, you can skip it and use `Model::where()` directly.  
 
 
 </ul>
