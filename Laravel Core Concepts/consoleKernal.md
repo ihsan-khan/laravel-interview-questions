@@ -1,8 +1,4 @@
-Here’s a **complete learning lecture** that ties together everything we discussed about the **Laravel Console Kernel**:
-
----
-
-# 🎓 Lecture: Understanding the Console Kernel in Laravel
+# 🎓 Understanding the Console Kernel in Laravel
 
 ## 1. What is the Console Kernel?
 The **Console Kernel** (`app/Console/Kernel.php`) is the **control center** for all command-line functionality in Laravel.  
@@ -90,7 +86,3 @@ protected function commands()
 - `$commands` = manual commands,  
 - `schedule()` = automatic scheduled tasks,  
 - `commands()` = loads all commands (classes + closures).
-
----
-
-Would you like me to extend this into a **step-by-step coding demo** (create a custom command, register it, and schedule it) so you can see the full workflow in practice?
